@@ -1,0 +1,133 @@
+[
+  {
+    "id": "case-001",
+    "synthetic": true,
+    "display_name": "Northstar IT",
+    "from_address": "helpdesk@example.com",
+    "reply_to": "helpdesk@example.com",
+    "subject": "Scheduled maintenance on Saturday",
+    "body": "Our fictional intranet will be unavailable Saturday 09:00\u201310:00. No action is required. Read the maintenance notice using your usual bookmark.",
+    "urls": [
+      "https://example.com/maintenance"
+    ],
+    "authentication": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "difficulty": "Beginner",
+    "scenario": "Legitimate maintenance notice. Low risk does not guarantee safety."
+  },
+  {
+    "id": "case-002",
+    "synthetic": true,
+    "display_name": "Northstar IT",
+    "from_address": "support@example.net",
+    "reply_to": "collector@example.org",
+    "subject": "URGENT: verify your account",
+    "body": "Your account will be suspended within 24 hours. Sign in and enter your password to keep access. This is a synthetic training message.",
+    "urls": [
+      "https://example.com@access.example.net/verify"
+    ],
+    "authentication": {
+      "spf": "fail",
+      "dkim": "fail",
+      "dmarc": "fail"
+    },
+    "difficulty": "Beginner",
+    "scenario": "Obvious impersonation with credential pressure, domain mismatches, and authentication failures."
+  },
+  {
+    "id": "case-003",
+    "synthetic": true,
+    "display_name": "Harbor Training",
+    "from_address": "events@example.org",
+    "reply_to": "registration@example.net",
+    "subject": "Workshop registration receipt",
+    "body": "Your fictional workshop seat is reserved. A separate registration partner handles replies. No payment or account access is requested.",
+    "urls": [
+      "https://tickets.example.net/receipt"
+    ],
+    "authentication": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "difficulty": "Intermediate",
+    "scenario": "Legitimate delegated registration; a different Reply-To and link domain can create a false positive."
+  },
+  {
+    "id": "case-004",
+    "synthetic": true,
+    "display_name": "Northstar Payroll",
+    "from_address": "payroll@example.com",
+    "reply_to": "payroll@example.com",
+    "subject": "Please sign in to review your payroll settings",
+    "body": "Please sign in to review the attached-in-spirit payroll notice. No actual attachment exists. Use the review portal below.",
+    "urls": [
+      "https://payroll.review.portal.accounts.example.net/login"
+    ],
+    "authentication": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "difficulty": "Advanced",
+    "scenario": "Suspicious account lure despite passing authentication. Could represent an abused legitimate account; a pass is not a safety verdict."
+  },
+  {
+    "id": "case-005",
+    "synthetic": true,
+    "display_name": "Facilities Desk",
+    "from_address": "facilities@example.com",
+    "reply_to": "facilities@example.com",
+    "subject": "URGENT: water outage in fictional office",
+    "body": "Please leave the affected meeting room immediately. Facilities staff will provide updates in person. No links or account action are required.",
+    "urls": [],
+    "authentication": {
+      "spf": "pass",
+      "dkim": "pass",
+      "dmarc": "pass"
+    },
+    "difficulty": "Beginner",
+    "scenario": "Legitimate urgent notice. Urgency alone should remain Low risk."
+  },
+  {
+    "id": "case-006",
+    "synthetic": true,
+    "display_name": "Invoice Desk",
+    "from_address": "billing@example.org",
+    "reply_to": "billing@example.org",
+    "subject": "Invoice review request",
+    "body": "Please review invoice DEMO-104. This synthetic message includes a numeric-host link. Confirm the invoice through your known vendor contact before taking action.",
+    "urls": [
+      "http://192.0.2.10/invoice"
+    ],
+    "authentication": {
+      "spf": "unknown",
+      "dkim": "unknown",
+      "dmarc": "unknown"
+    },
+    "difficulty": "Intermediate",
+    "scenario": "Unusual numeric-host URL with unavailable authentication. Unknown results are not failures."
+  },
+  {
+    "id": "case-007",
+    "synthetic": true,
+    "display_name": "Northstar Payroll",
+    "from_address": "payroll@example.net",
+    "reply_to": "payroll@example.net",
+    "subject": "Payroll announcement \u2014 final warning",
+    "body": "Final warning: verify your account credentials immediately to avoid a suspended account. <img src=\"https://example.net/pixel\" onerror=\"alert(1)\"> This literal markup must display as text.",
+    "urls": [
+      "https://example.net/payroll"
+    ],
+    "authentication": {
+      "spf": "pass",
+      "dkim": "fail",
+      "dmarc": "fail"
+    },
+    "difficulty": "Intermediate",
+    "scenario": "Impersonation and credential pressure; literal HTML demonstrates safe text rendering."
+  }
+]

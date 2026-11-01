@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="csrf-token" content="{{ csrf }}">
+  <title>SignalDesk | Phishing Analysis Lab</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+</head>
+<body>
+<header><div class="brand"><span class="logo" aria-hidden="true">SD</span><div>SignalDesk<span class="subbrand">SECURITY OPERATIONS LAB</span></div></div><span class="mode">● LOCAL TRAINING</span></header>
+<main>
+  <div class="page-heading"><div><p class="eyebrow">ANALYST WORKSPACE / EMAIL SECURITY</p><h1>Phishing email analysis</h1><p class="muted">Inspect the evidence. Explain the risk. Document your decision.</p></div><span class="synthetic">100% synthetic cases</span></div>
+  <p class="notice">Demo heuristic, not a validated detection model. All identities and URLs are fictional. Links are inert; nothing is fetched, sent, or scanned live.</p>
+  <section id="metrics" class="metrics" aria-label="Case overview"></section>
+  <div class="workspace">
+    <aside class="panel queue"><div class="panel-title"><h2>Case queue</h2><span id="case-count" class="muted"></span></div>
+      <label class="filter-label" for="filter">Filter by risk</label><select id="filter"><option value="All">All risk levels</option><option>Low</option><option>Medium</option><option>High</option></select>
+      <div id="cases"></div>
+    </aside>
+    <section id="detail" class="panel detail" aria-label="Selected investigation"><p>Select a case to begin.</p></section>
+  </div>
+  <p id="message" role="status" aria-live="polite"></p>
+</main>
+<footer>SignalDesk · Beginner SOC investigation lab · No live mail or external services</footer>
+<template id="detail-template">
+  <div class="detail-heading"><div><p class="eyebrow" data-field="case-label"></p><h2 data-field="subject"></h2><p class="muted" data-field="scenario"></p></div><span class="badge" data-field="risk"></span></div>
+  <div class="tabs-label">MESSAGE & EVIDENCE</div>
+  <dl class="metadata"><dt>Display name</dt><dd data-field="display_name"></dd><dt>From</dt><dd data-field="from_address"></dd><dt>Reply-To</dt><dd data-field="reply_to"></dd><dt>Authentication</dt><dd data-field="authentication"></dd></dl>
+  <p class="muted small" data-field="authentication_note"></p>
+  <pre class="email-body" data-field="body"></pre>
+  <h3>Message URLs <span class="muted small">· inert text</span></h3><ul data-field="urls" class="mono"></ul>
+  <div class="analysis-grid">
+    <section><h3>Explainable risk score</h3><p class="score" data-field="score"></p><meter min="0" max="100" low="25" high="60" optimum="0" data-field="meter" aria-label="Risk score"></meter><p class="muted small">Low 0–24 · Medium 25–59 · High 60–100. Weights sum once per rule and cap at 100. No TLD-only rule.</p><ul data-field="findings" class="findings"></ul></section>
+    <section class="ioc-panel"><div class="panel-title"><h3>Indicators of compromise</h3><button type="button" data-action="copy" class="secondary">Copy IOCs</button></div><p class="muted small">Extracted observables, not proof of compromise. Includes sender and URL domains.</p><pre data-field="iocs" tabindex="0"></pre></section>
+  </div>
+  <h3>Suggested response actions</h3><ul data-field="actions" class="actions"></ul>
+  <form id="notes-form"><div class="panel-title"><h3>Analyst investigation</h3><label>Status <select name="status"><option>New</option><option>Investigating</option><option>Closed</option></select></label></div>
+    <label for="notes">Notes & decision rationale</label><textarea id="notes" name="notes" maxlength="5000" rows="5" placeholder="Record indicators, alternative explanations, verification steps, and your recommendation."></textarea>
+    <p class="muted small">Local JSON storage. No sensitive or real personal data. Export includes saved notes only.</p>
+    <div class="form-bottom"><button type="submit">Save investigation</button><span class="muted small" data-field="updated_at"></span><a data-field="export-json" class="button secondary" download>Export JSON</a><a data-field="export-txt" class="button secondary" download>Export text</a></div>
+  </form>
+</template>
+</body></html>
