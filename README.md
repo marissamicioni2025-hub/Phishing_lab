@@ -1,7 +1,6 @@
-# SignalDesk — Phishing Email Analysis Lab
+Phishing Email Analysis Lab
 
-A local, beginner-friendly SOC investigation demo built with Python, Flask, HTML, CSS, and vanilla JavaScript. Seven fictional cases let an analyst inspect email metadata, explain indicators, review a weighted risk score, save a decision, and export an investigation report. No API keys, accounts, database, or paid services.
-
+A local, beginner-friendly SOC investigation demo built with Python, HTML, CSS, and JavaScript. Seven fictional cases let an analyst inspect email metadata, explain indicators, review a weighted risk score, save a decision, and export an investigation report. 
 **Training only:** this is a demo heuristic, not a validated detection model. A score is a triage aid, not a phishing verdict. All identities are fictional and use reserved example domains or the documentation IP `192.0.2.10`. Nothing sends email, collects credentials, opens message URLs, or retrieves external content.
 
 ## Quick start
